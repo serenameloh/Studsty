@@ -1,0 +1,37 @@
+package com.studsty.app.data.database
+
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "quiz_questions",
+    foreignKeys = [
+        ForeignKey(
+            entity = ChapterEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["chapterId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ],
+    indices = [Index("chapterId")]
+)
+data class QuizQuestionEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+
+    val chapterId: Int,
+
+    val question: String,
+
+    val optionA: String,
+
+    val optionB: String,
+
+    val optionC: String,
+
+    val optionD: String,
+
+    val correctAnswer: String
+)
